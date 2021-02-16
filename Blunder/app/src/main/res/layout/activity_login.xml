@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_activity"
+    android:background="@color/background"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -12,9 +12,12 @@
         android:layout_width="338dp"
         android:layout_height="431dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back_rec" />
 
     <ImageView
@@ -33,11 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="Email ID"
-        android:textColorHint="@color/white"
+        android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
