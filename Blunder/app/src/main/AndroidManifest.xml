@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Blunder">
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".DetailsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
