@@ -4,6 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashBoard">
+    android:background="@color/background"
+    tools:context=".DashBoard" >
+
+
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="126dp"
+        android:layout_height="92dp"
+        android:layout_weight="1"
+        android:padding="4dp"
+        app:egDrawValueInPie="true"
+        app:egInnerPaddingColor="#bee3db"
+        app:egLegendHeight="0dp"
+        app:egValueTextSize="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="0.433" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="369dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_1dash" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="112dp"
+        android:fontFamily="@font/rancho"
+        android:text="STATISTICS"
+        android:textColor="#DFCECE"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        app:layout_constraintEnd_toEndOf="@+id/imageView24"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/piechart"
+        app:layout_constraintTop_toTopOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="0.503" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="124dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/heartdash" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="219dp"
+        android:layout_height="309dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="88dp"
+        android:rotation="-37"
+        app:cardBackgroundColor="#52FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="219dp"
+        android:layout_height="309dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:rotation="9"
+        app:cardBackgroundColor="#57FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

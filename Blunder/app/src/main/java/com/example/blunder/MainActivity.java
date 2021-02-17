@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Blunder">
         <activity android:name=".ChatActivity" />
-        <activity android:name=".DetailsActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".DashBoard"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
