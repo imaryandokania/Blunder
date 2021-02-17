@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "898771447890",
+    "project_id": "blunder-6823b",
+    "storage_bucket": "blunder-6823b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898771447890:android:b79a8cf33f23b1ec1b2f8b",
+        "android_client_info": {
+          "package_name": "com.app.blunder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898771447890-1i16ku621p029a7hgjprcgo9e3dfvu2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.blunder",
+            "certificate_hash": "a8e157083e7bd4b9336b95336f606029ed6533ac"
+          }
+        },
+        {
+          "client_id": "898771447890-u8rcuhdsgse8orv5ingh4bknpnsr3quq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRflY6egW8HwqlEzX9Nuh1_D5XNQe_hws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898771447890-u8rcuhdsgse8orv5ingh4bknpnsr3quq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

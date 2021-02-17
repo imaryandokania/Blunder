@@ -1,4 +1,4 @@
-package com.example.blunder;
+package com.app.blunder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -6,8 +6,6 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package com.example.blunder;
+package com.app.blunder;
 
 import org.junit.Test;
 
