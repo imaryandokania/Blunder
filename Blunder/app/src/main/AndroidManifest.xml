@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Blunder">
         <activity android:name=".ChatActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".DetailsActivity"/>
         <activity android:name=".DashBoard"/>
         <activity android:name=".MainActivity">
             <intent-filter>
