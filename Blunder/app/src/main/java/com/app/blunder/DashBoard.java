@@ -1,4 +1,4 @@
-package com.example.blunder;
+package com.app.blunder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;

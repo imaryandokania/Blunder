@@ -1,4 +1,4 @@
-package com.example.blunder;
+package com.app.blunder;
 
 import android.content.Context;
 
