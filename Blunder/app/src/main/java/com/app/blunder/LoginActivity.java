@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button loginIN, signup;
+    private Button loginIN, signUp;
     private EditText email, password;
     private FirebaseAuth mAuth;
 
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background));
-        if (android.os.Build.VERSION.SDK_INT > 9)
+        if (android.os.Build.VERSION.SDK_INT > 21)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -53,18 +53,21 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPassword);
 
         loginIN = findViewById(R.id.button);
-        signup = findViewById(R.id.button2);
+        signUp = findViewById(R.id.button2);
 
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
-            FirebaseUser firebaseUser = mAuth.getCurrentUser();
-            if (firebaseUser != null) {
-                Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(LoginActivity.this, "Please Login!", Toast.LENGTH_SHORT).show();
+        FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please Login!", Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
@@ -74,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser();
             }
         });
-        signup.setOnClickListener(new View.OnClickListener() {
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registerUser();
@@ -114,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             password.requestFocus();
             return;
         }
+
         OkHttpClient client = new OkHttpClient();
         client.setConnectTimeout(30, TimeUnit.SECONDS); // connect timeout
         client.setReadTimeout(30, TimeUnit.SECONDS);
@@ -134,11 +138,13 @@ public class LoginActivity extends AppCompatActivity {
         }catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+
         if(ver.equals("false")) {
             email.setError("Wrong Email detected by AI");
             email.requestFocus();
             return;
         }
+
         mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
