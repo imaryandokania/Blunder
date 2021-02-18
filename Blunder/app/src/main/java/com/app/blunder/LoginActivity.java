@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +25,9 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginIN, signup;
-    private TextView email, password;
+    private EditText email, password;
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
 
 
@@ -40,6 +42,23 @@ public class LoginActivity extends AppCompatActivity {
 
         loginIN = findViewById(R.id.button);
         signup = findViewById(R.id.button2);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                if(firebaseUser != null) {
+                    Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please Login!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
         loginIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,15 +146,22 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        FirebaseUser mUser = mAuth.getCurrentUser();
-
-        if(mUser != null) {
-            Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(LoginActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
-        }
+        mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Login error! Please try again!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "You cannot go back!", Toast.LENGTH_SHORT).show();
     }
+}
