@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button signInButton, logInButton;
+    private Button loginIN, signup;
     private TextView email, password;
     private FirebaseAuth mAuth;
 
@@ -38,10 +38,23 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
 
-        email = findViewById(R.id.button);
-        password = findViewById(R.id.button2);
+        loginIN = findViewById(R.id.button);
+        signup = findViewById(R.id.button2);
+        loginIN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginUser();
+            }
+        });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
+        });
 
     }
+
 
     private void registerUser() {
         final String Email = email.getText().toString().trim();
