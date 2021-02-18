@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginIN, signup;
     private EditText email, password;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
-
 
 
     @Override
@@ -59,17 +57,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                if(firebaseUser != null) {
-                    Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Please Login!", Toast.LENGTH_SHORT).show();
-                }
+        FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
+            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+            if (firebaseUser != null) {
+                Toast.makeText(LoginActivity.this, "You are logged in!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(LoginActivity.this, "Please Login!", Toast.LENGTH_SHORT).show();
             }
         };
 
