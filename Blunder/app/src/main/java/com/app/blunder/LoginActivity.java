@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -19,7 +20,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,8 +44,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background));
 
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background));
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         email = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
 
@@ -78,7 +92,10 @@ public class LoginActivity extends AppCompatActivity {
     private void registerUser() {
         final String Email = email.getText().toString().trim();
         final String Password = email.getText().toString().trim();
-
+        String front = Email .substring(0,Email .indexOf("@"));
+        String domain = Email .substring(Email .indexOf("@")+1);
+        Log.i("front",front);
+        Log.i("domain",domain);
         if(Email.isEmpty()) {
             email.setError("Email Name is required!! ");
             email.requestFocus();
@@ -102,7 +119,31 @@ public class LoginActivity extends AppCompatActivity {
             password.requestFocus();
             return;
         }
+        OkHttpClient client = new OkHttpClient();
+        client.setConnectTimeout(30, TimeUnit.SECONDS); // connect timeout
+        client.setReadTimeout(30, TimeUnit.SECONDS);
+        Request request = new Request.Builder()
+                .url("https://ajith-verify-email-address-v1.p.rapidapi.com/varifyEmail?email="+front+"%40"+domain)
+                .get()
+                .addHeader("x-rapidapi-key", "dff7e330e3msh0a11bbc62a0b719p10baa8jsn956a1929fdfa")
+                .addHeader("x-rapidapi-host", "ajith-Verify-email-address-v1.p.rapidapi.com")
+                .build();
+        String ver = "";
 
+        try {
+            Response response = client.newCall(request).execute();
+            String h=response.body().string();
+            JSONObject r=new JSONObject(h);
+            ver=r.getString("exist");
+            Log.i("status",ver);
+        }catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        if(ver.equals("false")) {
+            email.setError("Wrong Email detected by AI");
+            email.requestFocus();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
