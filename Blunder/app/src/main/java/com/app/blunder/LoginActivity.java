@@ -193,8 +193,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Login error! Please try again!", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, DashBoard.class);
                     startActivity(intent);
                 }
             }
