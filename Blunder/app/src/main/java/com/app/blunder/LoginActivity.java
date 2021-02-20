@@ -144,6 +144,12 @@ public class LoginActivity extends AppCompatActivity {
             email.requestFocus();
             return;
         }
+        if(domain.equals("lidte.com"))
+        {
+            email.setError("Wrong Email detected by AI");
+            email.requestFocus();
+            return;
+        }
 
         mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
