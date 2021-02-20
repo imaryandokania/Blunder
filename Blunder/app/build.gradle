@@ -54,7 +54,10 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    //implementation 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.*.*'
+    implementation (name:'android-card-stack-0.1.6', ext:'aar')
 }
 
 apply plugin: 'com.google.gms.google-services'
