@@ -62,21 +62,10 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/heartdash" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="219dp"
-        android:layout_height="309dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="88dp"
-        android:rotation="-37"
-        app:cardBackgroundColor="#52FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.wenchao.cardstack.CardStack
         android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="400dp"
+        android:layout_height="385dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:gravity="center"
@@ -86,7 +75,11 @@
         app:card_gravity="top"
         app:card_margin="10dp"
         app:card_stack_size="4"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="0.316" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
